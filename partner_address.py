@@ -31,11 +31,11 @@ class res_partner_address(osv.osv):
             param = "'%" + name + "%'"
         else:
             param = "'" + name + "'"
-        where_clause = name and " a.name %(op)s %(name)s OR p.name %(op)s %(name)s " \
-                                " OR a.city %(op)s %(name)s " % {'op': operator, 'name': param} or ''
+        where_clause = name and " AND ( a.name %(op)s %(name)s OR p.name %(op)s %(name)s " \
+                                " OR a.city %(op)s %(name)s )" % {'op': operator, 'name': param} or ''
         limit_str = limit and ' LIMIT %s' % limit or ''
         offset_str = offset and ' OFFSET %s' % offset or ''
-        where_str = where_clause and (" WHERE %s" % where_clause) or ''
+        where_str = where_clause and (" WHERE a.active = TRUE and p.active = TRUE %s" % where_clause) or ''
         cr.execute(from_clause + where_str + limit_str + offset_str)
         ids = map(lambda x: x[0], cr.fetchall())
         return self.name_get(cr, uid, ids, context=context)
