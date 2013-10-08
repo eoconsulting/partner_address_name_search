@@ -1,10 +1,12 @@
 Improve search filter of Partner Address
 ========================================
 
+**This project has been moved to https://launchpad.net/zoook-esale**
+
 Improve the search filter of the Partner Address,
 util in many views, like the Stock Serial Number tree view.
 
-Autores:
+Authors:
 
     Mariano Ruiz <mrsarm@gmail.com> (Enterprise Objects Consulting)
 
